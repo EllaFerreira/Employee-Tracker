@@ -1,4 +1,4 @@
-# Employee-Tracker 👣
+# Employee-Tracker 👣 🔍
 
 ![license](https://img.shields.io/github/license/EllaFerreira/Note-Taker)
 ![Inquirer](https://img.shields.io/badge/Package-Inquirer-red.svg)
