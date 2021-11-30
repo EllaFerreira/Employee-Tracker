@@ -1,0 +1,23 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "![license](https://img.shields.io/github/license/EllaFerreira/Note-Taker) ![Inquirer](https://img.shields.io/badge/Package-Inquirer-red.svg) ![MySQL](https://img.shields.io/badge/AppWith-MySQL-purple.svg) ![Nodejs](https://img.shields.io/badge/AppWith-NodeJS-blue.svg) ![JavaScript](https://img.shields.io/badge/AppWith-ExpressJS-yellow.svg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EllaFerreira/Employee-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EllaFerreira/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/EllaFerreira/Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "mysql2": "^2.3.3"
+  }
+}
