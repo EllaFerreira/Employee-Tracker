@@ -67,6 +67,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 - [Express](https://expressjs.com/en/starter/hello-world.html)
 - [MySQL2](https://www.npmjs.com/package/mysql2)
+- [Asciiart-logo](https://www.npmjs.com/package/asciiart-logo)
 
 ## Project Creator
 

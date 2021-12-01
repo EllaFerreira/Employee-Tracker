@@ -8,18 +8,18 @@ const heading = require("asciiart-logo");
 
 //Arrays
 const departArr = () => {
-  return db.query("SELECT DISTINT name from departments");
+  return connectingDb.query("SELECT DISTINT name from departments");
 };
 const roleArr = () => {
-  return db.query("SELECT DISTINT title from roles");
+  return connectingDb.query("SELECT DISTINT title from roles");
 };
 const managerArr = () => {
-  return db.query(
+  return connectingDb.query(
     'SELECT CONCAT(first_name," ", last_name) as manager_name from employees'
   );
 };
 const employeeArr = () => {
-  return db.query(
+  return connectingDb.query(
     'SELECT CONCAT(first_name," ", last_name) as name from employees'
   );
 };
@@ -135,7 +135,7 @@ async function addRoles() {
       type: "list",
       message: "Add which department the new role belongs to.".brightCyan,
       name: "departmentName",
-      choices: await departmentArr(),
+      choices: await departArr(),
     },
   ];
   inquirer.prompt(addRoleQuestions).then(async (data) => {
