@@ -1,10 +1,37 @@
 const express = require("express");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
-const connectingDb = require("./config/connection");
-const heading = require("asciiart-logo");
 
-// db.query = util.promisify(db.query);
+const heading = require("asciiart-logo");
+const mysql = require("mysql2");
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+// Express middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+const db = mysql.createConnection(
+  {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  },
+  console.log(`Connect to the employee_db database. 🚀`)
+);
+db.connect();
+
+app.get("/employees", (req, res) => {
+  const sql = "SELECT * FROM employee_db ";
+
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
 
 //Arrays
 const departArr = () => {
@@ -27,27 +54,24 @@ const employeeArr = () => {
 //displaying
 const displayAllDepartments = () => {
   console.log("\nAll departments:\n");
-  connectingDb
-    .query(
-      `
+  db.query(
+    `
     SELECT 
         * 
     FROM 
         departments
     `,
-      function (err, results) {
-        console.table(results);
-        setTimeout(startMenu, 1000);
-      }
-    )
-    .catch((err) => console.log(err));
+    function (err, results) {
+      console.table(results);
+      setTimeout(startMenu, 1000);
+    }
+  ).catch((err) => console.log(err));
 };
 
 const displayAllRoles = () => {
   console.log("\nAll roles:\n");
-  connectingDb
-    .query(
-      `
+  db.query(
+    `
     SELECT 
         r.title, 
         r.id as role_id, 
@@ -55,39 +79,36 @@ const displayAllRoles = () => {
         salary
     FROM role r
     JOIN departments d ON r.departments_id = d.id`,
-      function (err, results) {
-        console.table(results);
-        setTimeout(startMenu, 1000);
-      }
-    )
-    .catch((err) => console.log(err));
+    function (err, results) {
+      console.table(results);
+      setTimeout(startMenu, 1000);
+    }
+  ).catch((err) => console.log(err));
 };
 
 const displayAllEmployees = () => {
   console.log("\nAll employees:\n");
-  connectingDb
-    .query(
-      `
+  db.query(
+    `
       SELECT 
-        e.ID as employee_id,
+        e.ID as employees_id,
         e.first_name,
         e.last_name,
         r.title as job_title,
         d.name as department,
-        salary,
+        r.salary as salary,
       CONCAT(m.first_name," ",m.last_name) as manager
       FROM 
-        employee e 
+        employees e 
       JOIN role r ON e.role_id = r.id 
       JOIN departments d ON r.departments_id = d.id 
-      LEFT JOIN employee m ON e.manager_id = m.id 
+      LEFT JOIN employees m ON e.manager_id = m.id 
       `,
-      function (err, results) {
-        console.table(results);
-        startMenu();
-      }
-    )
-    .catch((err) => console.log(err));
+    function (err, results) {
+      console.table(results);
+      startMenu();
+    }
+  ).catch((err) => console.log(err));
 };
 
 //adding
@@ -100,7 +121,7 @@ const addDepartments = async () => {
     },
   ];
   await inquirer.prompt(addDepartmentQuestion).then(async (data) => {
-    await connectingDb
+    await db
       .query(
         `
             INSERT INTO 
@@ -135,16 +156,16 @@ async function addRoles() {
       type: "list",
       message: "Add which department the new role belongs to.".brightCyan,
       name: "departmentName",
-      choices: await departmentArr(),
+      choices: departArr(),
     },
   ];
   inquirer.prompt(addRoleQuestions).then(async (data) => {
     const { roleTitle, departmentName, salary } = data;
-    await connectingDb
+    await db
       .query(
         `
         INSERT INTO 
-            role (title,salary,department_id) 
+            roles (title,salary,department_id) 
         SELECT 
             ?,
             ?,
@@ -199,7 +220,7 @@ async function addNewEmployees() {
     console.log(data);
     const { firstName, lastName, roleName, managerName } = data;
     var managerId = undefined;
-    await connectingDb
+    await db
       .query(
         'SELECT id FROM employee WHERE CONCAT(first_name," ",last_name) = ?',
         managerName
@@ -211,7 +232,7 @@ async function addNewEmployees() {
         managerId = results[0].id;
       })
       .catch((err) => console.log(err));
-    await connectingDb
+    await db
       .query(
         `
             INSERT INTO 
@@ -259,13 +280,13 @@ async function updateEmployeeRoles() {
   inquirer.prompt(updateEmployeeRoleQuestions).then(async (data) => {
     const { employeeName, roleName } = data;
     var roleId = undefined;
-    await connectingDb
+    await db
       .query("SELECT id FROM role WHERE title = ?", roleName)
       .then((results) => {
         roleId = results[0].id;
       })
       .catch((err) => console.log(err));
-    await connectingDb
+    await db
       .query(
         `UPDATE employee SET role_id = ? WHERE CONCAT(first_name," ",last_name) = ?`,
         [roleId, employeeName]
