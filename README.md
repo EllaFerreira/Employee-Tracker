@@ -16,6 +16,7 @@ Also used Node js and Express to interact with the db.
 ## Mock up
 
 ![mockup](https://media.giphy.com/media/CP98NRnWNOxbCjS2oc/giphy.gif)
+
 [walkthrough video](https://drive.google.com/file/d/1iBX5ONexHcq2trFfi10x8rKnJr8qwIFI/view?usp=sharing)
 
 ## Content
