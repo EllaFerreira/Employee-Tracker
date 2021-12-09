@@ -296,17 +296,17 @@ const startMenu = () => {
 
 function displayHeading() {
     console.log(
-        heading({
-            name: 'Employee Tracker',
-            font: 'Sweet',
-            padding: 3,
-            borderColor: 'bold-yellow',
-            textColor: 'bold-magenta',
-        })
-            .emptyLine()
-            .emptyLine()
-            .render()
-    )
+      heading({
+        name: "Employee Tracker",
+        font: "Big",
+        padding: 3,
+        borderColor: "bold-yellow",
+        textColor: "bold-magenta",
+      })
+        .emptyLine()
+        .emptyLine()
+        .render()
+    );
 };
 
 const init = () => {
