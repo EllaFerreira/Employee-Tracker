@@ -67,6 +67,22 @@ THEN I am prompted to select an employee to update and their new role and this i
 - Mysql2 npm package;
 - Asciiart-logo;
 
+## Installation
+
+If you want to run this locally on your machine:
+
+- `Clone` to your local machine from this repo.
+- Open the repo in your code editor (vs code for example)
+- Open with F12 the command-line.
+- Run `npm install` on the terminal to install the packages, when it's done,
+- Run `mysql -u root -p` to connect to the database,
+- Also using the command-line now run `SOURCE db/schema.sql` to create the tables,
+- After you create the tables you have to populate it run `SOURCE db/seeds.sql`
+- Finally run `node server` to run the node application.
+- You will see the 'Employee Tracker' screen and also the options such as:
+
+**View all departments, View all roles, View all employees, Create new department, Create new role, Create new employee and update.**
+
 ## Sources
 
 - [Express](https://expressjs.com/en/starter/hello-world.html)
