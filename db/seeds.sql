@@ -1,7 +1,7 @@
 INSERT INTO
-departments (name)
+department (name)
 VALUES
-('Engineering'),
+('Technology'),
 ('DevOps'),
 ('Marketing'),
 ('Sales'),
@@ -10,9 +10,9 @@ VALUES
 SELECT 
 *
 FROM
-departments;
+department;
 INSERT INTO
-roles(role_title, role_salary, department_id)
+role(title, salary, department_id)
 VALUES
 ('Software Engineer', 150000, 1),
 ('Full Stack Developer', 120000, 1),
@@ -24,14 +24,14 @@ VALUES
 ('Account Manager', 60000, 5),
 ('CEO', 120000, 6);
 INSERT INTO
-employees(first_name, last_name, role_id, manager_id)
+employee(first_name, last_name, role_id, manager_id)
 VALUES
-('Carol', 'Smith', 5, NULL),
-('Ella', 'Ferreira', 1, NULL),
-('Zahra', 'Willians', 1, 1),
-('Brett', 'Clark', 2, NULL),
-('Zoe', 'Martinse', 3, NULL),
-('Claire', 'Beatrice', 3, 3),
-('Stela', 'Morato', 5, 5),
-('Pedro', 'Leugh', 6, NULL),
-('Ander', 'Noguez', 4, NULL);
+('Carol', 'Smith', 1, NULL),
+('Ella', 'Ferreira', 2, NULL),
+('Zahra', 'Willians', 3, 1),
+('Brett', 'Clark', 4, NULL),
+('Zoe', 'Martinse', 5, NULL),
+('Claire', 'Beatrice', 6, 3),
+('Stela', 'Morato', 7, 5),
+('Pedro', 'Leugh', 8, NULL),
+('Ander', 'Noguez', 9, NULL);

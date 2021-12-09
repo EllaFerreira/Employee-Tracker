@@ -1,20 +1,22 @@
-# Employee-Tracker 👣 🔍
+# Employee-Tracker 👣 🔍 👀
 
 ![license](https://img.shields.io/github/license/EllaFerreira/Note-Taker)
 ![Inquirer](https://img.shields.io/badge/Package-Inquirer-red.svg)
 ![MySQL](https://img.shields.io/badge/AppWith-MySQL-purple.svg)
 ![Nodejs](https://img.shields.io/badge/AppWith-NodeJS-blue.svg)
-![JavaScript](https://img.shields.io/badge/AppWith-ExpressJS-yellow.svg)
+![Express](https://img.shields.io/badge/AppWith-ExpressJS-yellow.svg)
 
 ## About this Project
 
 As a developer frequently we have to create interfaces that allows non-developers to easily interact with information stored in databases.
 
 In this project I used MySQL as datasabe and Inquirer npm package to be able to interact with the user via command-line, and the console.table npm package to print MySQL rows to the console.
+Also used Node js and Express to interact with the db.
 
 ## Mock up
 
 ![mockup]()
+![walkthrough video]()
 
 ## Content
 
@@ -58,10 +60,11 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 - Node/Express js - backend;
 - JavaScript;
-- File System;
+- Inquirer npm package;
+- dotenv;
 - Console.table npm package;
 - Mysql2 npm package;
-- Inquirer npm package;
+- Asciiart-logo;
 
 ## Sources
 
