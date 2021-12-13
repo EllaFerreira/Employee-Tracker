@@ -24,6 +24,7 @@ Also used Node js and Express to interact with the db.
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Technologies](#technologies)
+- [Installation](#installation)
 - [Sources](#sources)
 - [Project Creator](#project-creator)
 
